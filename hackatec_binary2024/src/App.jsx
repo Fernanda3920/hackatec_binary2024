@@ -11,16 +11,27 @@ import {
   Link,
 } from "react-router-dom";
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { blue, cyan } from '@mui/material/colors';
+
+const customtheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: blue,
+    secondary: cyan,
+  }
+});
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    <Header/>
-    <Router>
-      
-    </Router>
-    </>
+    <ThemeProvider theme={customtheme}>
+      <Header/>
+      <Router>
+        
+      </Router>
+    </ThemeProvider>
   )
 }
 

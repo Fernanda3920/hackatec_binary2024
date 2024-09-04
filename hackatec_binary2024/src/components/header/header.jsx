@@ -26,7 +26,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 const pages = ['Home', 'About', 'Legal'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -55,19 +54,17 @@ export default function ResponsiveAppBar() {
   
     return (
     <BrowserRouter>
-      <AppBar position="static">
+      <AppBar position="static" class="frosted">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
               variant="h6"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
-                color: 'inherit',
                 textDecoration: 'none',
               }}
             >
@@ -97,7 +94,7 @@ export default function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>        
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="A"/>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -116,11 +113,9 @@ export default function ResponsiveAppBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                  </MenuItem>
-                ))}
+                  <MenuItem onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Profile</Typography></MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Dashboard</Typography></MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Log out</Typography></MenuItem>
               </Menu>
             </Box>
           </Toolbar>

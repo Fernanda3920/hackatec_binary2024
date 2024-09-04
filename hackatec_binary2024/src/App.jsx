@@ -18,9 +18,21 @@ import { blue, cyan } from '@mui/material/colors';
 const customtheme = createTheme({
   palette: {
     mode: 'dark',
-    primary: blue,
-    secondary: cyan,
-  }
+    contrastThreshold: 4.5,
+    primary: {
+      main: blue[100],
+      contrastText: '#FFFFFF',
+    },
+    secondary: {
+      main: cyan[200],
+      contrastText: '#FFFFFF',
+    }
+  },
+  typography: {
+    h6: {
+      color: blue[100]
+    }
+  },
 });
 
 function App() {

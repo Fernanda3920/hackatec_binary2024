@@ -121,7 +121,7 @@ export default function register(){
                     </FormControl>
                 </Grid>
                 <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleRegister}>
+                    <Button color="White" variant="outlined" endIcon={<SendIcon />} onClick={handleRegister}>
                     Submit
                     </Button>
                 </Grid>

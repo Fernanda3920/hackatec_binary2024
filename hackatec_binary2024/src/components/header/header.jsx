@@ -15,8 +15,10 @@ import PostsList from '../postslist/postslist.jsx';
 import Post from '../post/post.jsx';
 import PostDetail from '../postdetail/postdetail.jsx';
 import About from '../about/about.jsx';
+import MyReservation from './MyReservation/MyReservation.jsx';
 import Map from '../map/map.jsx';
 import Home from '../home/home.jsx';
+import Postlistmodal from "./postlistmodal/postlistmodal.jsx";
 
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
@@ -80,6 +82,7 @@ export default function ResponsiveAppBar() {
                         <Tab as={Link} to={"/Postslist"} label="Posts" />
                         <Tab as={Link} to={"/Map"} label="Map" />
                         <Tab as={Link} to={"/About"} label="About" />
+                        <Tab as={Link} to={"/postlistmodal"} label="Postlistmodal" />
                         <Tab label="Legal" disabled/>
                     </Tabs>
                 </Box>
@@ -114,6 +117,7 @@ export default function ResponsiveAppBar() {
               >
                   <MenuItem as={Link} to={"/login"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Log in</Typography></MenuItem>
                   <MenuItem as={Link} to={"/register"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Register</Typography></MenuItem>
+                  <MenuItem as={Link} to={"/myreservation"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>My reservations</Typography></MenuItem>
                   <MenuItem as={Link} to={"/reset-password"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Forgot your password?</Typography></MenuItem>
               </Menu>
             </Box>
@@ -130,8 +134,10 @@ export default function ResponsiveAppBar() {
                   <Route path="/post" element={<Post/>}/>
                   <Route path="/post/:id" element={<PostDetail/>}/>
                   <Route path="/map" element={<Map/>}/>
+                  <Route path="/myreservation" element={<MyReservation/>}/>
                   <Route path="/about" element={<About/>}/>
                   <Route path="/home" element={<Home/>}/>
+                  <Route path="/postlistmodal" element={<Postlistmodal/>}/>
                 </Routes>
             </div>
         </BrowserRouter>

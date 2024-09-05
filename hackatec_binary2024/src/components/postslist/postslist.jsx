@@ -173,7 +173,7 @@ export default function postlist(){
                                     />
                                 </Grid2>
                                 <Grid2 size={1}>
-                                    <Button color="secondary" variant="outlined" onClick={HandlePostDetail} >
+                                    <Button color="White" variant="outlined" onClick={HandlePostDetail} >
                                     More
                                     </Button>
                                 </Grid2>
@@ -184,7 +184,7 @@ export default function postlist(){
                     </Paper>
                 ))}
                 </Masonry>
-                <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleClickOpen}>
+                <Button color="White" variant="outlined" endIcon={<SendIcon />} onClick={handleClickOpen}>
                     New Publication
                 </Button>
             </Box>

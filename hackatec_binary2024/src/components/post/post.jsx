@@ -234,7 +234,7 @@ export default function login(){
                     </FormControl>
                 </Grid>
                 <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />}>
+                    <Button color="White" variant="outlined" endIcon={<SendIcon />}>
                     Submit
                     </Button>
                 </Grid>

@@ -96,7 +96,7 @@ export default function resetpassword(){
                     </FormControl>
                 </Grid>
                 <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleResetPassword}>
+                    <Button color="White" variant="outlined" endIcon={<SendIcon />} onClick={handleResetPassword}>
                     Send Email
                     </Button>
                 </Grid>

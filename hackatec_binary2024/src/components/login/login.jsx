@@ -124,7 +124,7 @@ export default function login(){
                     </FormControl>
                 </Grid>
                 <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleLogin}>
+                    <Button color="White" variant="outlined" endIcon={<SendIcon />} onClick={handleLogin}>
                     Submit
                     </Button>
                 </Grid>

@@ -1,6 +1,6 @@
 <svg 
   viewBox="0 0 2048 2048"
-  xmlns='http://www.w3.org/2000/svg'>
+  xmlns='http://www.w3.org/2000/svg' opacity="0.25">
 
   <filter id='noiseFilter'>
     <feTurbulence 
@@ -9,6 +9,7 @@
       numOctaves='6' 
       stitchTiles='stitch' />
   </filter>
+  
 
   <rect
     width='100%' 

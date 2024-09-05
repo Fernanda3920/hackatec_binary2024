@@ -32,7 +32,7 @@ body {
   radial-gradient(99% 99% at 5% 93%, rgba(77, 37, 24, 0.2) 4%, rgba(7, 58, 255, 0) 100%),
   radial-gradient(160% 154% at 711px -303px, rgba(22, 20, 20, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%),
   url(./noise.svg);  
-  background-blend-mode:hard-light;
+  background-blend-mode:lighten;
   filter: contrast(120%) brightness(100%);
 }
 

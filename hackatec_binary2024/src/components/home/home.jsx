@@ -2,12 +2,37 @@ import React, {Component} from "react";
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 
 import './home.css';
-import Homebody from './home_body'
+import Homebody from './home_body';
 
-export default function Home() {
+import { animateScroll } from 'react-scroll';
+import { Element, scroller } from 'react-scroll';
+
+const options = {
+    // your options here, for example:
+    duration: 0,
+    smooth: false,
+};
+const options2 = {
+    duration: 10,
+    smooth: false,
+    containerId: "containerElement",
+    offset: 50
+};
+const options3 = {
+    duration: 2000,
+    smooth: true,
+    containerId: "containerElement"
+};
+  
+  
+  export default function Home() {
+    animateScroll.scrollTo(120, options);
+    animateScroll.scrollTo(120, options2);
+    animateScroll.scrollTo(0, options3);
     return (
         <div className="App">
-            <Parallax pages={2} style={{ left: "0"}} class="animation">
+            <Element>
+            <Parallax pages={2} style={{ left: "0"}} class="animation" containerId="containerElement">
                 <ParallaxLayer offset={0} speed={-1.0}>
                     <div class="animation_layer parallax" id="parallaxgeneric100"></div>
                 </ParallaxLayer>
@@ -46,6 +71,7 @@ export default function Home() {
                   <Homebody />
                 </ParallaxLayer>
             </Parallax>
+            </Element>
         </div>
     );
 }

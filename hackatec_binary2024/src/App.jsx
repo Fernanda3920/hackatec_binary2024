@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import Header from './components/header/header'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
 import {
@@ -13,26 +12,26 @@ import {
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { blue, cyan } from '@mui/material/colors';
+import { green, lightGreen } from '@mui/material/colors';
 
 const customtheme = createTheme({
   palette: {
     mode: 'dark',
     contrastThreshold: 4.5,
     primary: {
-      main: blue[100],
+      main: green[200],
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: cyan[200],
+      main: lightGreen[300],
       contrastText: '#FFFFFF',
     }
   },
   typography: {
     h6: {
-      color: blue[100]
+      color: lightGreen[100]
     }
-  },
+  }
 });
 
 function App() {

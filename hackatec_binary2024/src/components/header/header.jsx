@@ -8,6 +8,10 @@ import {
     Link,
 } from "react-router-dom";
 
+import Login from '../login/login.jsx';
+import Register from '../register/register.jsx';
+import ResetPassword from '../resetpassword/resetpassword.jsx'
+import PostsList from '../postslist/postslist.jsx';
 import About from '../about/about.jsx';
 import Home from '../home/home.jsx';
 
@@ -24,8 +28,6 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
-const pages = ['Home', 'About', 'Legal'];
 
 export default function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -60,7 +62,6 @@ export default function ResponsiveAppBar() {
             <Typography
               variant="h6"
               noWrap
-              component="a"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -68,7 +69,7 @@ export default function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              Turismo
+              Helios360
             </Typography>
             {['md'].map((expand) => (
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -77,12 +78,12 @@ export default function ResponsiveAppBar() {
                         onChange={handleChange}
                         textColor="secondary"
                         indicatorColor="secondary"
-                        aria-label="secondary tabs example"
                         centered
                     >
                         <Tab as={Link} to={"/Home"} label="Home" />
+                        <Tab as={Link} to={"/Postslist"} label="Posts" />
                         <Tab as={Link} to={"/About"} label="About" />
-                        <Tab value="three" label="Legal" disabled/>
+                        <Tab label="Legal" disabled/>
                     </Tabs>
                 </Box>
             ))}
@@ -91,6 +92,7 @@ export default function ResponsiveAppBar() {
                 <TextField id="outlined-search" label="Search field" type="search" />
             </Box>
 
+            {['md'].map((expand) => (
             <Box sx={{ flexGrow: 0 }}>        
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -113,18 +115,23 @@ export default function ResponsiveAppBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                  <MenuItem onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Profile</Typography></MenuItem>
-                  <MenuItem onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Dashboard</Typography></MenuItem>
-                  <MenuItem onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Log out</Typography></MenuItem>
+                  <MenuItem as={Link} to={"/login"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Log in</Typography></MenuItem>
+                  <MenuItem as={Link} to={"/register"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Register</Typography></MenuItem>
+                  <MenuItem as={Link} to={"/reset-password"} onClick={handleCloseUserMenu}><Typography sx={{ textAlign: 'center' }}>Forgot your password?</Typography></MenuItem>
               </Menu>
             </Box>
+            ))}
           </Toolbar>
         </Container>
       </AppBar>
       <div>
                 <Routes>
-                    <Route path="/about" element={<About/>}/>
-                    <Route path="/home" element={<Home/>}/>
+                  <Route path="/login" element={<Login/>}/>
+                  <Route path="/register" element={<Register/>}/>
+                  <Route path="/reset-password" element={<ResetPassword/>}/>
+                  <Route path="/postslist" element={<PostsList/>}/>
+                  <Route path="/about" element={<About/>}/>
+                  <Route path="/home" element={<Home/>}/>
                 </Routes>
             </div>
         </BrowserRouter>

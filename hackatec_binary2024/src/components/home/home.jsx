@@ -27,12 +27,10 @@ const options3 = {
   
   export default function Home() {
     animateScroll.scrollTo(120, options);
-    animateScroll.scrollTo(120, options2);
-    animateScroll.scrollTo(0, options3);
     return (
         <div className="App">
             <Element>
-            <Parallax pages={2} style={{ left: "0"}} class="animation" containerId="containerElement">
+            <Parallax pages={4} style={{ left: "0", top: "0", bottom: "0"}} class="animation" containerId="containerElement">
                 <ParallaxLayer offset={0} speed={-1.0}>
                     <div class="animation_layer parallax" id="parallaxgeneric100"></div>
                 </ParallaxLayer>
@@ -68,6 +66,32 @@ const options3 = {
                 </ParallaxLayer>
                 
                 <ParallaxLayer offset={1} speed={0}>
+                  <Homebody />
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={2} speed={-0.3}>
+                    <div class="animation_layer parallax" id="parallax2generic70"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={2} speed={-0.25}>
+                    <div class="animation_layer parallax" id="parallax2generic60"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={2} speed={-0.2}>
+                    <div class="animation_layer parallax" id="parallax2generic50"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={2} speed={-0.15}>
+                    <div class="animation_layer parallax" id="parallax2generic40"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={2} speed={-0.1}>
+                    <div class="animation_layer parallax" id="parallax2generic30"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={2} speed={-0.05}>
+                    <div class="animation_layer parallax" id="parallax2generic20"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={2} speed={0}>
+                    <div class="animation_layer parallax" id="parallax2generic10"></div>
+                </ParallaxLayer>
+                
+                <ParallaxLayer offset={3} speed={0}>
                   <Homebody />
                 </ParallaxLayer>
             </Parallax>

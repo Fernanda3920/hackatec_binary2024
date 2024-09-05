@@ -3,7 +3,7 @@ import SendIcon from '@mui/icons-material/Send';
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebaseconfig'; // Asegúrate de que la ruta es correcta
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
@@ -14,6 +14,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -23,7 +24,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import './postslist.css'
 
-const heights = [150, 230, 190, 170, 210, 150, 230, 180, 150, 190, 200, 150, 230, 150, 180];
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
     color: theme.palette.text.secondary,
@@ -35,7 +35,7 @@ export default function postlist(){
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        setOpen(true);
+        navigate('/post');
     };
     
     const handleClose = () => {
@@ -48,6 +48,7 @@ export default function postlist(){
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchInput, setSearchInput] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const postsCollection = collection(db, 'posts');
@@ -74,6 +75,13 @@ export default function postlist(){
         setSearchTerm(searchInput);
         }
     };
+
+    const HandlePostDetail = async (e) => {
+        e.preventDefault();
+        const postRef = doc(db, 'posts', postId);
+        await updateDoc(postRef, post);
+        navigate(`/post/${postId}`);
+    }
 
     const filteredPosts = posts.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -164,6 +172,11 @@ export default function postlist(){
                                     }}
                                     />
                                 </Grid2>
+                                <Grid2 size={1}>
+                                    <Button color="secondary" variant="outlined" onClick={HandlePostDetail} >
+                                    More
+                                    </Button>
+                                </Grid2>
                             </Grid2>
                         </AccordionSummary>
                         <AccordionDetails>{post.description}</AccordionDetails>
@@ -172,7 +185,7 @@ export default function postlist(){
                 ))}
                 </Masonry>
                 <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleClickOpen}>
-                    Register
+                    New Publication
                 </Button>
             </Box>
         </Box>

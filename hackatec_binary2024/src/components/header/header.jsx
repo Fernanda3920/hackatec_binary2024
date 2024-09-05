@@ -12,7 +12,10 @@ import Login from '../login/login.jsx';
 import Register from '../register/register.jsx';
 import ResetPassword from '../resetpassword/resetpassword.jsx'
 import PostsList from '../postslist/postslist.jsx';
+import Post from '../post/post.jsx';
+import PostDetail from '../postdetail/postdetail.jsx';
 import About from '../about/about.jsx';
+import Map from '../map/map.jsx';
 import Home from '../home/home.jsx';
 
 import Tabs from '@mui/material/Tabs';
@@ -28,6 +31,8 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+
+import AdbIcon from '@mui/icons-material/Adb';
 
 export default function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -59,18 +64,9 @@ export default function ResponsiveAppBar() {
       <AppBar position="static" class="frosted">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 700,
-                textDecoration: 'none',
-              }}
-            >
-              Horizon360
-            </Typography>
+            <h3>
+                <img src="image.jpg" alt="  HORIZON360"/>
+            </h3>
             {['md'].map((expand) => (
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     <Tabs
@@ -82,6 +78,7 @@ export default function ResponsiveAppBar() {
                     >
                         <Tab as={Link} to={"/Home"} label="Home" />
                         <Tab as={Link} to={"/Postslist"} label="Posts" />
+                        <Tab as={Link} to={"/Map"} label="Map" />
                         <Tab as={Link} to={"/About"} label="About" />
                         <Tab label="Legal" disabled/>
                     </Tabs>
@@ -130,6 +127,9 @@ export default function ResponsiveAppBar() {
                   <Route path="/register" element={<Register/>}/>
                   <Route path="/reset-password" element={<ResetPassword/>}/>
                   <Route path="/postslist" element={<PostsList/>}/>
+                  <Route path="/post" element={<Post/>}/>
+                  <Route path="/post/:id" element={<PostDetail/>}/>
+                  <Route path="/map" element={<Map/>}/>
                   <Route path="/about" element={<About/>}/>
                   <Route path="/home" element={<Home/>}/>
                 </Routes>

@@ -27,7 +27,6 @@ export default function login(){
     };
     document.title = 'Horizon360 - Log in';
     return (
-        
         <Box class='frosted box' >
             <Grid container spacing={2} columns={1}>
                 <Grid size={2}/>

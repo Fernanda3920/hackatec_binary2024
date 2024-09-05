@@ -12,14 +12,14 @@ import {
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { green, lightGreen } from '@mui/material/colors';
+import { amber, lightGreen } from '@mui/material/colors';
 
 const customtheme = createTheme({
   palette: {
     mode: 'dark',
     contrastThreshold: 4.5,
     primary: {
-      main: green[200],
+      main: amber[500],
       contrastText: '#FFFFFF',
     },
     secondary: {

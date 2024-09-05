@@ -69,7 +69,7 @@ export default function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              Helios360
+              Horizon360
             </Typography>
             {['md'].map((expand) => (
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>

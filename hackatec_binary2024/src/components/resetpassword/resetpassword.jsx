@@ -1,7 +1,10 @@
 import { Box, Typography, TextField, Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid2';
-import React from "react";
+import React, { useState } from 'react';
+import { auth } from '../../../firebaseconfig'; // Asegúrate de que la ruta es correcta
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -54,6 +57,21 @@ export default function resetpassword(){
 
     document.title = 'Horizon360 - ResetPassword';
 
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleResetPassword = async (e) => {
+        e.preventDefault();
+        try {
+        await sendPasswordResetEmail(auth, email);
+        handleClickOpen1();
+        } catch (error) {
+        handleClickOpen2();
+        }
+    };
+
     return (
         <Box class='frosted box' >
             <Grid container spacing={2} columns={1}>
@@ -66,62 +84,20 @@ export default function resetpassword(){
                     Reset password</Typography>
                 </Grid>
                 <Grid size={1}>
-                    <TextField id="outlined-basic" label="Email" variant="outlined"/>
+                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined" required>
+                        <InputLabel htmlFor="outlined-adornment-password">Email</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            label="Email"
+                        />
+                    </FormControl>
                 </Grid>
                 <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleClickOpen1}>
+                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleResetPassword}>
                     Send Email
-                    </Button>
-                </Grid>
-                <Grid size={1}>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={showPassword ? 'text' : 'password'}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            onMouseUp={handleMouseUpPassword}
-                            edge="end"
-                            >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        label="Password"
-                    />
-                    </FormControl>
-                </Grid>
-                <Grid size={1}>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={showPassword ? 'text' : 'password'}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            onMouseUp={handleMouseUpPassword}
-                            edge="end"
-                            >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        label="Password"
-                    />
-                    </FormControl>
-                </Grid>
-                <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleClickOpen2}>
-                    Submit
                     </Button>
                 </Grid>
                 <Grid size={2}/>
@@ -132,11 +108,11 @@ export default function resetpassword(){
                 onClose={handleClose1}
             >
                 <DialogTitle id="alert-dialog-title">
-                {"Email enviado"}
+                {"Email sent"}
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Haz iniciado sesión correctamente.
+                    Password reset email sent! Please check your inbox.
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -151,11 +127,11 @@ export default function resetpassword(){
                 onClose={handleClose2}
             >
                 <DialogTitle id="alert-dialog-title">
-                {"Welcome"}
+                {"Error"}
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Haz iniciado sesión correctamente.
+                    There has been an error, make sure that the Email is correctly written.
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>

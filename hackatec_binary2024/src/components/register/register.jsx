@@ -1,7 +1,9 @@
 import { Box, Typography, TextField, Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid2';
-import React from "react";
+import React, { useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate, Link } from 'react-router-dom';
 
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -33,6 +35,7 @@ export default function register(){
     };
 
     const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -40,9 +43,35 @@ export default function register(){
 
     const handleClose = () => {
         setOpen(false);
+        navigate('/login');
+    };
+
+    const handleClickOpen2 = () => {
+        setOpen2(true);
+    };
+
+    const handleClose2 = () => {
+        setOpen2(false);
     };
     
     document.title = 'Horizon360 - Register';
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        const auth = getAuth();
+        try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log('Usuario registrado:', userCredential.user);
+        handleClickOpen(); // Redirigir a la página de bienvenida
+        } catch (error) {
+        handleClickOpen2();
+        }
+    };
 
     return (
         
@@ -57,10 +86,19 @@ export default function register(){
                     Register</Typography>
                 </Grid>
                 <Grid size={1}>
-                    <TextField id="outlined-basic" label="Email" variant="outlined"/>
+                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined" required>
+                        <InputLabel htmlFor="outlined-adornment-password">Email</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            label="Email"
+                        />
+                    </FormControl>
                 </Grid>
                 <Grid size={1}>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined" required>
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
@@ -68,46 +106,23 @@ export default function register(){
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton
-                            aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
                             onMouseUp={handleMouseUpPassword}
-                            edge="end"
                             >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                         </InputAdornment>
                         }
                         label="Password"
-                    />
-                    </FormControl>
-                </Grid>
-                <Grid size={1}>
-                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={showPassword ? 'text' : 'password'}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            onMouseUp={handleMouseUpPassword}
-                            edge="end"
-                            >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        label="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
                     </FormControl>
                 </Grid>
                 <Grid size={2}>
-                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleClickOpen}>
-                    Register
+                    <Button color="secondary" variant="outlined" endIcon={<SendIcon />} onClick={handleRegister}>
+                    Submit
                     </Button>
                 </Grid>
                 <Grid size={2}/>
@@ -121,11 +136,29 @@ export default function register(){
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Haz iniciado sesión correctamente.
+                    Registered correctly.
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleClose} autoFocus>
+                    Ok
+                </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog
+                open={open2}
+                onClose={handleClose2}
+            >
+                <DialogTitle id="alert-dialog-title">
+                {"Error"}
+                </DialogTitle>
+                <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    An error has been encountered, check if your account has been already created.
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={handleClose2} autoFocus>
                     Ok
                 </Button>
                 </DialogActions>
